@@ -1,6 +1,7 @@
 import { Icon, PixelButton, RobotSprite } from "@/components/game/pixel";
 import { playerMaxXP } from "@/game/engine";
 import { useGame } from "@/game/save";
+import { isPlacing, rankAt } from "@/game/ranked";
 import { StatBar } from "@/components/game/pixel";
 
 export type Screen = "menu" | "roster" | "shop" | "tournaments" | "modes" | "ranked";
