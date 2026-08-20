@@ -3,11 +3,13 @@ import { playerMaxXP } from "@/game/engine";
 import { useGame } from "@/game/save";
 import { StatBar } from "@/components/game/pixel";
 
-export type Screen = "menu" | "roster" | "shop" | "tournaments" | "modes";
+export type Screen = "menu" | "roster" | "shop" | "tournaments" | "modes" | "ranked";
 
 export function MenuScreen({ onGo }: { onGo: (s: Screen) => void }) {
   const g = useGame();
   const champion = g.team[0] ?? g.robots[0]?.id ?? "aurorion";
+  const rank = rankAt(g.ranked.rankIndex);
+  const placing = isPlacing(g.ranked);
 
   return (
     <div
@@ -59,6 +61,31 @@ export function MenuScreen({ onGo }: { onGo: (s: Screen) => void }) {
           </span>
         </div>
         <StatBar kind="xp" value={g.playerXP} max={playerMaxXP(g.playerLevel)} width={340} />
+        <button
+          type="button"
+          className="mk-btn"
+          onClick={() => onGo("ranked")}
+          style={{
+            fontSize: 10,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            borderColor: rank.tier.color,
+            textAlign: "left",
+          }}
+        >
+          <img
+            src={rank.tier.emblem}
+            alt=""
+            width={26}
+            height={26}
+            style={{ imageRendering: "pixelated" }}
+          />
+          <span style={{ flex: 1 }}>RANQUEADO</span>
+          <span style={{ fontSize: 7, color: rank.tier.color }}>
+            {placing ? "CLASSIFICATORIAS" : `${rank.name} · ${g.ranked.pr} PR`}
+          </span>
+        </button>
         <PixelButton onClick={() => onGo("tournaments")}>TORNEIOS</PixelButton>
         <PixelButton onClick={() => onGo("modes")}>MODOS DE JOGO</PixelButton>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>

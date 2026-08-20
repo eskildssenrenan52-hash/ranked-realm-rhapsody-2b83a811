@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Frame, Icon, Panel, PixelButton, RobotSprite, StatBar } from "@/components/game/pixel";
+import { Frame, Panel, PixelButton, RobotSprite, StatBar } from "@/components/game/pixel";
+import { Icon } from "@/components/game/pixel";
+import { LoadoutEditor } from "@/components/game/loadout";
 import { TRAIN_COST_PER_POINT } from "@/game/config";
 import { baseStats, maxTrained, robotMaxXP, type RobotSave } from "@/game/engine";
-import { addGold, loadoutOf, setLoadout, setTeam, updateRobots, useGame } from "@/game/save";
+import { addGold, setTeam, updateRobots, useGame } from "@/game/save";
 import { faceUrl, ROBOT_MAP, ROBOTS } from "@/game/robots";
-import { EFFECT_LABEL, MAX_LOADOUT } from "@/game/skills";
 
 const RARITY_GLOW: Record<string, string> = {
   bronze: "rgba(205,127,50,0.9)",
@@ -337,7 +338,7 @@ function RobotDetail({ save, onClose }: { save: RobotSave; onClose: () => void }
             onTrain={() => train("agl")}
           />
 
-          <LoadoutPicker robotId={save.id} />
+          <LoadoutEditor robotId={save.id} />
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginTop: 8 }}>
             <PixelButton onClick={toggleTeam}>{inTeam ? "TIRAR DA EQUIPE" : "ESCALAR"}</PixelButton>

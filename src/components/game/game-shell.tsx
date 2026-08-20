@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MenuScreen, type Screen } from "@/screens/menu";
 import { ModesScreen } from "@/screens/modes";
+import { RankedScreen } from "@/screens/ranked";
 import { RosterScreen } from "@/screens/roster";
 import { ShopScreen } from "@/screens/shop";
 import { TournamentsScreen } from "@/screens/tournaments";
@@ -40,6 +41,7 @@ export function GameShell() {
             {screen === "roster" && <RosterScreen onBack={() => setScreen("menu")} />}
             {screen === "shop" && <ShopScreen onBack={() => setScreen("menu")} />}
             {screen === "modes" && <ModesScreen onBack={() => setScreen("menu")} />}
+            {screen === "ranked" && <RankedScreen onBack={() => setScreen("menu")} />}
             {screen === "tournaments" && (
               <TournamentsScreen onBack={() => setScreen("menu")} />
             )}

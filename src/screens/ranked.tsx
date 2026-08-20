@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Icon, Panel, PixelButton, RobotSprite, StatBar } from "@/components/game/pixel";
+import { Icon, Panel, PixelButton } from "@/components/game/pixel";
 import { faceUrl, ROBOT_MAP } from "@/game/robots";
 import { teamAverageLevel } from "@/game/modes";
 import {
